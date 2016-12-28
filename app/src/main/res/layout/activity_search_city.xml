@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_activity"
+            tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/edtTxt_searchCity"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/margin_twenty"
+            android:background="@drawable/bg_edit_text_grey"
+            android:hint="Search City"
+            android:imeOptions="actionSearch"
+            android:padding="@dimen/margin_ten"
+            android:textColor="@color/darkest_grey"
+            android:textColorHint="@color/light_grey"/>
+
+        <ImageView
+            android:id="@+id/imgVw_currentLocation"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_twenty"
+            android:padding="@dimen/margin_eight"
+            android:layout_gravity="right|center"
+            android:src="@drawable/ic_loc_gps"/>
+        </FrameLayout>
+
+        <com.app.weather.customViews.WrButton
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/edtTxt_searchCity"
+            android:layout_marginLeft="@dimen/margin_twentyFive"
+            android:layout_marginRight="@dimen/margin_twentyFive"
+            android:layout_marginTop="@dimen/margin_twenty"
+            android:layout_marginBottom="@dimen/margin_fifteen"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_sixteen"/>
+
+        <com.app.weather.customViews.WrTextView
+            android:id="@+id/txtVw_selectCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select one of following city"
+            android:layout_below="@id/btn_search"
+            android:textSize="@dimen/font_eighteen"
+            android:textColor="@color/darkest_grey"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_twenty"
+            android:layout_marginLeft="@dimen/margin_ten"
+            android:layout_marginRight="@dimen/margin_ten"
+            android:layout_marginBottom="@dimen/margin_ten"/>
+
+        <LinearLayout
+            android:id="@+id/lnrLyt_searchedCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_row"
+            android:visibility="gone"
+            android:layout_below="@id/txtVw_selectCity"
+            android:orientation="vertical"/>
+    </LinearLayout>
+</ScrollView>

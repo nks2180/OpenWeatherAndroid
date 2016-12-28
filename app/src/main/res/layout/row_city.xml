@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              tools:ignore="RtlHardcoded"
+              android:background="@drawable/selector_row"
+                android:paddingLeft="@dimen/margin_fifteen"
+                android:paddingRight="@dimen/margin_fifteen"
+                android:paddingTop="@dimen/margin_fifteen">
+
+    <ImageView
+        android:id="@+id/imgVw_weather"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="@dimen/margin_fifteen"
+        android:layout_marginTop="@dimen/margin_ten"/>
+
+    <com.app.weather.customViews.WrTextView
+        android:id="@+id/txtVw_cityName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imgVw_weather"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_eighteen"
+        tools:text="Powai, Mumbai"/>
+
+    <com.app.weather.customViews.WrTextView
+        android:id="@+id/txtVw_temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtVw_cityName"
+        android:layout_marginTop="@dimen/margin_five"
+        android:layout_toRightOf="@id/imgVw_weather"
+        android:textColor="@color/darkest_grey"
+        android:textSize="@dimen/font_sixteen"
+        tools:text="@string/hint_temp"/>
+
+    <com.app.weather.customViews.WrTextView
+        android:id="@+id/txtVw_wind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtVw_temperature"
+        android:layout_marginTop="@dimen/margin_three"
+        android:layout_toRightOf="@id/imgVw_weather"
+        android:textColor="@color/darkest_grey"
+        android:textSize="@dimen/font_sixteen"
+        tools:text="@string/hint_wind_cloud"/>
+
+    <com.app.weather.customViews.WrTextView
+        android:id="@+id/txtVw_coordinates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtVw_wind"
+        android:layout_marginTop="@dimen/margin_three"
+        android:layout_toRightOf="@id/imgVw_weather"
+        android:textColor="@color/darkest_grey"
+        android:textSize="@dimen/font_sixteen"
+        tools:text="@string/hint_lat_long"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:layout_below="@id/txtVw_coordinates"
+        android:layout_marginTop="@dimen/margin_fifteen"/>
+</RelativeLayout>

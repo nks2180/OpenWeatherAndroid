@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">OpenWeather</string>
+
+    <string name="toast_enter_city_first">Please enter City first</string>
+
+    <string name="hint_temp">Max Temp: 35 Min Temp: 15</string>
+    <string name="hint_wind_cloud">wind 5.1m/s. clouds 1%,</string>
+    <string name="hint_lat_long">Lat: -97.4362 Long: 35.4352</string>
+    <string name="str_lat">Lat: %s</string>
+
+    <string name="str_long">Lon : %s</string>
+    <string name="str_max_temp">Max Temp: %s°C</string>
+    <string name="str_min_temp">Min temp : %s°C</string>
+    <string name="str_wind"> wind %s m/s</string>
+    <string name="str_cloud">clouds %s%%</string>
+    <string name="str_humidity">%s hpa</string>
+
+    <string name="str_bullet">&#160;\u2022&#160;</string>
+
+    <string name="str_weather_icon">http://openweathermap.org/img/w/%s.png</string>
+
+
+</resources>
