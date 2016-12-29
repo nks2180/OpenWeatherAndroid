@@ -20,6 +20,9 @@
     <string name="str_weather_icon">http://openweathermap.org/img/w/%s.png</string>
 
     <string name="permission_location_rationale">To show weather information about your current place, allow us access your location.</string>
+    <string name="enter_city_name">Enter City Name</string>
+    <string name="submit">Submit</string>
+    <string name="select_city">Select one of following city</string>
 
 
 </resources>

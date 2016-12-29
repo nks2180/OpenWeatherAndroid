@@ -20,7 +20,7 @@
             android:layout_height="50dp"
             android:layout_margin="@dimen/margin_twenty"
             android:background="@drawable/bg_edit_text_grey"
-            android:hint="Search City"
+            android:hint="@string/enter_city_name"
             android:singleLine="true"
             android:maxLines="1"
             android:imeOptions="actionSearch"
@@ -52,7 +52,7 @@
             android:layout_marginBottom="@dimen/margin_fifteen"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textColor="@color/white"
             android:textSize="@dimen/font_sixteen"/>
 
@@ -60,7 +60,7 @@
             android:id="@+id/txtVw_selectCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select one of following city"
+            android:text="@string/select_city"
             android:layout_below="@id/btn_search"
             android:textSize="@dimen/font_eighteen"
             android:textColor="@color/darkest_grey"
