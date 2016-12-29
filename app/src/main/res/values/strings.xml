@@ -11,8 +11,8 @@
     <string name="str_long">Lon : %s</string>
     <string name="str_max_temp">Max Temp: %s°C</string>
     <string name="str_min_temp">Min temp : %s°C</string>
-    <string name="str_wind"> wind %s m/s</string>
-    <string name="str_cloud">clouds %s%%</string>
+    <string name="str_wind"> Wind %s m/s</string>
+    <string name="str_cloud">Clouds %s%%</string>
     <string name="str_humidity">%s hpa</string>
 
     <string name="str_bullet">&#160;\u2022&#160;</string>

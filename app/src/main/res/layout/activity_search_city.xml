@@ -25,6 +25,7 @@
             android:maxLines="1"
             android:imeOptions="actionSearch"
             android:padding="@dimen/margin_ten"
+            android:inputType="textCapWords"
             android:textColor="@color/darkest_grey"
             android:textColorHint="@color/light_grey"/>
 
