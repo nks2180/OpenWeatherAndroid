@@ -6,7 +6,7 @@
             android:background="@color/bg_activity"
             tools:ignore="RtlHardcoded">
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/lnrLyt_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

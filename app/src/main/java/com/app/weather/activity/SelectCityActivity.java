@@ -24,6 +24,7 @@ import com.app.weather.customViews.WrTextView;
 import com.app.weather.model.CityWeather;
 import com.app.weather.presenter.SelectCityPresenter;
 import com.app.weather.presenter.SelectCityView;
+import com.app.weather.utils.RequestProgressDialog;
 import com.app.weather.utils.WrLogger;
 import com.app.weather.utils.WrUtils;
 import com.google.android.gms.common.ConnectionResult;
@@ -80,6 +81,7 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
     private Location mCurrentLocation;
 
     Context mContext;
+    RequestProgressDialog apiProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,26 +115,20 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
         super.initializePresenter(selectCityPresenter, this);
     }
 
-    @OnClick(R.id.btn_search)
-    public void fetchCityWeather() {
-        String searchedText = edtTxtSearchCity.getText().toString().trim();
-
-        if (!TextUtils.isEmpty(searchedText))
-            selectCityPresenter.findCites(searchedText);
-        else
-            WrUtils.showToast(mContext, getString(R.string.toast_enter_city_first));
-    }
-
     public void fetchCurrentLocationWeather() {
-        if (null != mCurrentLocation)
+        if (null != mCurrentLocation) {
             selectCityPresenter.getCurrentWeatherData(String.valueOf(mCurrentLocation.getLatitude()), String.valueOf(mCurrentLocation.getLongitude()));
-        else
+            apiProgressDialog = WrUtils.getRequestProgressDialog(mContext, "Please wait..");
+            apiProgressDialog.show();
+        } else
             WrUtils.showToast(mContext, getString(R.string.toast_enter_city_first));
     }
 
 
     @Override
     public void onWeatherResponseCame(List<CityWeather> citiWeathers) {
+        if (null != apiProgressDialog && apiProgressDialog.isShowing())
+            apiProgressDialog.dismiss();
         lnrLytSearchedCity.removeAllViews();
         if (null != citiWeathers && citiWeathers.size() > 0) {
             lnrLytSearchedCity.setVisibility(View.VISIBLE);
@@ -160,11 +156,25 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
 
     }
 
-    @OnClick(R.id.imgVw_currentLocation)
-    public void fetchCurrentLocation(){
-        SelectCityActivityPermissionsDispatcher.callLocationWithCheck(SelectCityActivity.this);
+    @OnClick(R.id.btn_search)
+    public void fetchCityWeather() {
+        String searchedText = edtTxtSearchCity.getText().toString().trim();
+
+        if (!TextUtils.isEmpty(searchedText)) {
+            WrUtils.hideKeyboard(edtTxtSearchCity, mContext);
+            selectCityPresenter.findCites(searchedText);
+            apiProgressDialog = WrUtils.getRequestProgressDialog(mContext, "Please wait..");
+            apiProgressDialog.show();
+        } else
+            WrUtils.showToast(mContext, getString(R.string.toast_enter_city_first));
     }
 
+    @OnClick(R.id.imgVw_currentLocation)
+    public void fetchCurrentLocation() {
+        edtTxtSearchCity.setText("");
+        WrUtils.hideKeyboard(edtTxtSearchCity, mContext);
+        SelectCityActivityPermissionsDispatcher.callLocationWithCheck(SelectCityActivity.this);
+    }
 
     private void asktToChangeLocationSetting() {
 
@@ -242,12 +252,6 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
             // mRequestingLocationUpdates = false;
         });
     }
-
-//    @OnShowRationale(Manifest.permission.ACCESS_FINE_LOCATION)
-//    void showRationaleForLocation(PermissionRequest request) {
-//
-//    }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

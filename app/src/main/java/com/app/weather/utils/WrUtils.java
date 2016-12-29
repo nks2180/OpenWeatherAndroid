@@ -10,7 +10,9 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -35,6 +37,11 @@ public class WrUtils {
         toast.show();
         toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 
+    }
+
+    public static RequestProgressDialog getRequestProgressDialog(Context mContext, String loadingMessage) {
+        RequestProgressDialog progressDialog = new RequestProgressDialog(mContext, loadingMessage, 0);
+        return progressDialog;
     }
 
     public static void loadImageThroughPicasso(final Context mContext, String mPicURL, final ImageView imgVw, int placeholderDrawable) {
@@ -81,5 +88,14 @@ public class WrUtils {
         myAppSettings.addCategory(Intent.CATEGORY_DEFAULT);
         myAppSettings.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(myAppSettings);
+    }
+
+    public static void hideKeyboard(View view, Context context) {
+        try {
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
