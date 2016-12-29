@@ -11,11 +11,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.app.weather.R;
 import com.app.weather.component.ApplicationComponent;
@@ -97,7 +100,16 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
                 .build();
         mGoogleApiClient.connect();
 
-        //selectCityPresenter.parseCityListResponse(Constants.DEFAULT_CITIES_JSON);
+        edtTxtSearchCity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    fetchCityWeather();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override

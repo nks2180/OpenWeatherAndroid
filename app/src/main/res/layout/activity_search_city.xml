@@ -21,6 +21,8 @@
             android:layout_margin="@dimen/margin_twenty"
             android:background="@drawable/bg_edit_text_grey"
             android:hint="Search City"
+            android:singleLine="true"
+            android:maxLines="1"
             android:imeOptions="actionSearch"
             android:padding="@dimen/margin_ten"
             android:textColor="@color/darkest_grey"

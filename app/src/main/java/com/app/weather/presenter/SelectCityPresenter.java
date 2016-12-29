@@ -70,7 +70,7 @@ public class SelectCityPresenter extends BasePresenterImpl<SelectCityView> imple
 
     }
 
-    public void parseCurrentLocationResponse(String response) {
+    private void parseCurrentLocationResponse(String response) {
         parsingExecutor.execute(CityWeather.class, response, new ParsingExecutor.ParsingCallback<CityWeather>() {
             @Override
             public void onParsingCompleted(CityWeather currentWeather) {
@@ -86,7 +86,7 @@ public class SelectCityPresenter extends BasePresenterImpl<SelectCityView> imple
         });
     }
 
-    public void parseCityListResponse(String response) {
+    private void parseCityListResponse(String response) {
         parsingExecutor.execute(CityResponse.class, response, new ParsingExecutor.ParsingCallback<CityResponse>() {
             @Override
             public void onParsingCompleted(CityResponse cityResponse) {
