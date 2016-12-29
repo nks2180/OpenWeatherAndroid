@@ -24,7 +24,6 @@ import com.app.weather.customViews.WrTextView;
 import com.app.weather.model.CityWeather;
 import com.app.weather.presenter.SelectCityPresenter;
 import com.app.weather.presenter.SelectCityView;
-import com.app.weather.utils.Constants;
 import com.app.weather.utils.WrLogger;
 import com.app.weather.utils.WrUtils;
 import com.google.android.gms.common.ConnectionResult;
@@ -48,8 +47,6 @@ import butterknife.OnClick;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 /**
@@ -91,14 +88,14 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
         mContext = this;
         getSupportActionBar().setTitle("Search City");
 
-//        mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                .addApi(LocationServices.API)
-//                .addConnectionCallbacks(this)
-//                .addOnConnectionFailedListener(this)
-//                .build();
-//        mGoogleApiClient.connect();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        mGoogleApiClient.connect();
 
-        selectCityPresenter.parseCityListResponse(Constants.DEFAULT_CITIES_JSON);
+        //selectCityPresenter.parseCityListResponse(Constants.DEFAULT_CITIES_JSON);
     }
 
     @Override
@@ -148,7 +145,6 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
         }
     }
 
-    @OnClick(R.id.imgVw_currentLocation)
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
     void callLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -162,6 +158,11 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
             asktToChangeLocationSetting();
         }
 
+    }
+
+    @OnClick(R.id.imgVw_currentLocation)
+    public void fetchCurrentLocation(){
+        SelectCityActivityPermissionsDispatcher.callLocationWithCheck(SelectCityActivity.this);
     }
 
 
@@ -201,7 +202,7 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         WrLogger.d("onConnected");
-        SelectCityActivityPermissionsDispatcher.callLocationWithCheck(SelectCityActivity.this);
+        //SelectCityActivityPermissionsDispatcher.callLocationWithCheck(SelectCityActivity.this);
     }
 
     @Override
@@ -242,10 +243,10 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
         });
     }
 
-    @OnShowRationale(Manifest.permission.ACCESS_FINE_LOCATION)
-    void showRationaleForLocation(PermissionRequest request) {
-
-    }
+//    @OnShowRationale(Manifest.permission.ACCESS_FINE_LOCATION)
+//    void showRationaleForLocation(PermissionRequest request) {
+//
+//    }
 
 
     @Override
@@ -256,11 +257,11 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
 
     @OnNeverAskAgain(Manifest.permission.ACCESS_FINE_LOCATION)
     void onLocationNeverAskAgain() {
-
+        WrUtils.openAppSettingsScreen(mContext, getResources().getString(R.string.permission_location_rationale));
     }
 
     @OnPermissionDenied(Manifest.permission.ACCESS_FINE_LOCATION)
     void onLocationPermissionDenied() {
-
+        WrUtils.showToast(mContext, "Location permission denied");
     }
 }

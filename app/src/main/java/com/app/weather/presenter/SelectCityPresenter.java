@@ -46,7 +46,8 @@ public class SelectCityPresenter extends BasePresenterImpl<SelectCityView> imple
 
     public void findCites(String keyword) {
         HashMap<String, String> map = new HashMap<>();
-        RequestBuilder requestBuilder = new RequestBuilder(NetworkConstants.API_FETCH_CITY_WEATHER);
+        map.put("q", keyword);
+        RequestBuilder requestBuilder = new RequestBuilder(NetworkConstants.API_FIND_CITY);
         requestBuilder.setExtraParameters(map);
         apiController.hitApi(requestBuilder, this);
     }

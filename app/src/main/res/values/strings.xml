@@ -19,5 +19,7 @@
 
     <string name="str_weather_icon">http://openweathermap.org/img/w/%s.png</string>
 
+    <string name="permission_location_rationale">To show weather information about your current place, allow us access your location.</string>
+
 
 </resources>

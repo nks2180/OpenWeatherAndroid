@@ -1,9 +1,16 @@
 package com.app.weather.utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
+import android.view.Window;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -50,5 +57,29 @@ public class WrUtils {
     public static String formatDecimal(double d){
         DecimalFormat f = new DecimalFormat("##.00");
         return f.format(d);
+    }
+
+    public static void openAppSettingsScreen(final Context mContext, String message) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        Window window = builder.create().getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.setMessage(message).setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                goToSettings(mContext);
+            }
+        }).setNegativeButton("Not Now", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        }).show();
+    }
+
+    private static void goToSettings(Context context) {
+        Intent myAppSettings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + context.getPackageName()));
+        myAppSettings.addCategory(Intent.CATEGORY_DEFAULT);
+        myAppSettings.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(myAppSettings);
     }
 }
