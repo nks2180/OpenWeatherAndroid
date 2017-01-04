@@ -36,6 +36,7 @@ import butterknife.Unbinder;
  * common to every fragment.
  *
  * @author Niranjan
+ * @since 12/28/16
  */
 public abstract class BaseFragment extends Fragment {
 
