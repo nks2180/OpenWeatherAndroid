@@ -5,7 +5,8 @@ import android.util.Log;
 import com.app.weather.BuildConfig;
 
 /**
- * Created by niranjan on 12/29/16.
+ *  @author Niranjan
+ *  @since 12/28/16
  */
 
 public class WrLogger {

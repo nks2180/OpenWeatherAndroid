@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by niranjan on 12/28/16.
+ *  @author Niranjan
+ *  @since 12/28/16
  */
 
 @JsonObject

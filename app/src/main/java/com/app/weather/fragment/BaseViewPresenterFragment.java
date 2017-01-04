@@ -11,7 +11,8 @@ import com.app.weather.presenter.BasePresenterImpl;
 import com.app.weather.presenter.BaseView;
 
 /**
- * Created by niranjan on 05/09/16.
+ *  @author Niranjan
+ *  @since 12/28/16
  */
 
 public abstract class BaseViewPresenterFragment<P extends BasePresenterImpl> extends BaseFragment implements BaseView {

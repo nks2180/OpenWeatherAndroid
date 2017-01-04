@@ -9,9 +9,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by niranjan on 04/08/16.
+ *  @author Niranjan
+ *  @since 12/28/16
  */
-
 
 /*
 * Singleton class for default executor supplier

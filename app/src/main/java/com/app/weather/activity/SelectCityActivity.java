@@ -55,6 +55,8 @@ import permissions.dispatcher.RuntimePermissions;
 
 /**
  * Created by niranjan on 12/28/16.
+ * @author niranjan
+ * @since 12/28/16
  */
 
 @RuntimePermissions
@@ -127,6 +129,13 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
         super.initializePresenter(selectCityPresenter, this);
     }
 
+
+    /**
+     * Created by niranjan on 12/28/16.
+     * @author niranjan
+     * @since 12/28/16
+     * @see #callLocation()
+     */
     public void fetchCurrentLocationWeather() {
         if (null != mCurrentLocation) {
             selectCityPresenter.getCurrentWeatherData(String.valueOf(mCurrentLocation.getLatitude()), String.valueOf(mCurrentLocation.getLongitude()));
@@ -136,7 +145,12 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
             WrUtils.showToast(mContext, getString(R.string.toast_enter_city_first));
     }
 
-
+    /**
+     * Created by niranjan on 12/28/16.
+     * @author niranjan
+     * @since 12/28/16
+     * @see SelectCityPresenter#parseCurrentLocationResponse(String)
+     */
     @Override
     public void onWeatherResponseCame(List<CityWeather> citiWeathers) {
         if (null != apiProgressDialog && apiProgressDialog.isShowing())
@@ -163,7 +177,7 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
             stopLocationUpdates();
             fetchCurrentLocationWeather();
         } else {
-            asktToChangeLocationSetting();
+            askToChangeLocationSetting();
         }
 
     }
@@ -188,7 +202,14 @@ public class SelectCityActivity extends BaseViewPresenterActivity<SelectCityPres
         SelectCityActivityPermissionsDispatcher.callLocationWithCheck(SelectCityActivity.this);
     }
 
-    private void asktToChangeLocationSetting() {
+
+    /**
+     * Created by niranjan on 12/28/16.
+     * @author niranjan
+     * @since 12/28/16
+     * @see #callLocation()
+     */
+    private void askToChangeLocationSetting() {
 
         mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
         mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);

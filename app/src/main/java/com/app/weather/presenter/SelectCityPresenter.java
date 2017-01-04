@@ -20,6 +20,9 @@ import javax.inject.Inject;
 
 /**
  * Created by niranjan on 12/28/16.
+ * @author niranjan
+ * @since 12/28/16
+ * @see com.app.weather.activity.SelectCityActivity
  */
 
 public class SelectCityPresenter extends BasePresenterImpl<SelectCityView> implements ApiDataReceiveCallback {
@@ -70,6 +73,12 @@ public class SelectCityPresenter extends BasePresenterImpl<SelectCityView> imple
 
     }
 
+    /**
+     * Created by niranjan on 12/28/16.
+     * @author niranjan
+     * @since 12/28/16
+     * @see SelectCityPresenter#onDataReceived(String, int)
+     */
     private void parseCurrentLocationResponse(String response) {
         parsingExecutor.execute(CityWeather.class, response, new ParsingExecutor.ParsingCallback<CityWeather>() {
             @Override
@@ -86,6 +95,12 @@ public class SelectCityPresenter extends BasePresenterImpl<SelectCityView> imple
         });
     }
 
+    /**
+     * Created by niranjan on 12/28/16.
+     * @author niranjan
+     * @since 12/28/16
+     * @see SelectCityPresenter#onDataReceived(String, int)
+     */
     private void parseCityListResponse(String response) {
         parsingExecutor.execute(CityResponse.class, response, new ParsingExecutor.ParsingCallback<CityResponse>() {
             @Override

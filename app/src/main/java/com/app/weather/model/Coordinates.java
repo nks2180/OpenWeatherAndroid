@@ -6,7 +6,8 @@ import com.bluelinelabs.logansquare.annotation.JsonObject;
 import java.io.Serializable;
 
 /**
- * Created by niranjan on 12/28/16.
+ *  @author Niranjan
+ *  @since 12/28/16
  */
 @JsonObject
 public class Coordinates implements Serializable{
